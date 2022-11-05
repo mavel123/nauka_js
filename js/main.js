@@ -27,14 +27,12 @@
 // const newAbc= numbers.concat(abc)
 // // console.log(newAbc)
 
-
 // //spread - ...
 
 // console.log(...abc)
 
 // const drinks =['pepsi', 'kawa', 'sok']
 // const meals = ['schabowy', 'spaghetti', 'zupa' ]
-
 
 // const menu = [...drinks, ...meals]
 // console.log(menu)
@@ -58,12 +56,12 @@
 
 // console.log(cars.splice(2,4))
 // console.log(cars)
-// 
+//
 // const numbers =[0, 23, 40, 165, 2, 44, 11]
 
 // function number(x) {
 //     return x>50
-    
+
 // }
 // // console.log(numbers.filter(number))
 
@@ -73,7 +71,6 @@
 
 // console.log(numbers.includes(23))
 // console.log(numbers.indexOf(44))
-
 
 // const newTab = numbers.forEach(item => {
 //   (item*2)
@@ -91,21 +88,73 @@
 
 // console.log(letters.includes('c'))
 
-const autoBrands = 'audi, mercedes, nissan, dodge'
+// const autoBrands = 'audi, mercedes, nissan, dodge'
 
-const autoTab = autoBrands.split(', ')
+// const autoTab = autoBrands.split(', ')
 
-if(autoTab.length > 3)
-{
-    console.log('Jest OK')
-}else{
-    console.log('nie jest ok')
+// if(autoTab.length > 3)
+// {
+//     console.log('Jest OK')
+// }else{
+//     console.log('nie jest ok')
+// }
+
+// if(autoTab.includes('audi')==true){
+//     autoTab.unshift('seat')
+//     console.log(autoTab)
+// }else{
+//     autoTab.pop();
+//     console.log(autoTab)
+// }
+
+// function test (){
+//     console.log('czesc')
+// }
+// test()
+
+// const hello = (name = ' drogi uzytkowniku') => {
+
+//     console.log(`czesc ${name}, jak sie masz?`)
+// }
+// hello()
+
+// const add = (x = 7, y = 9) => {
+//     console.log(x+y)
+// }
+// // add(10)
+
+// const arr=[1,2,3]
+// console.log(arr)
+// console.log(...arr)
+
+// //rest
+
+// const numbers = (x,y, ...z) => {
+//     console.log(x,y,z)
+// }
+// numbers(12,32,123,21,312,32,1,31,3,1,3,13,43,45,54)
+// let celsius =0
+// let temp =0
+
+// const fahrenheit = (item) => {
+//     return result = item*1,8+32
+// }
+// temp = fahrenheit(celsius=10)
+
+// console.log( `${celsius}*C =  ${temp}*F`)
+
+let num = 10
+const numbers = []
+for (let i = 0; i <= num; i++) {
+	numbers.push(i)
 }
 
-if(autoTab.includes('audi')==true){
-    autoTab.unshift('seat')
-    console.log(autoTab)
-}else{
-    autoTab.pop();
-    console.log(autoTab)
+console.log(numbers)
+
+const divideByThree = item => {
+	item % 3 === 0 ? console.log(`${item} jest podzielny przez 3`) : console.log(`${item} nie jest podzielny przez 3`)
 }
+
+console.log(numbers.forEach(divideByThree))
+
+
