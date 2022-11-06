@@ -1,4 +1,11 @@
-.item {
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8,42 +15,22 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
-  background-size: cover;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: rgb(255, 255, 255);
+  background-color: rgb(82, 82, 82);
 }
 
-.item1 {
-  height: 40px;
-  background-image: url("https://cdn.pixabay.com/photo/2019/06/07/10/44/sunset-4257963_960_720.jpg");
+div {
+  padding: 50px;
 }
 
-.item2 {
-  height: 300px;
-  background-image: url("https://cdn.pixabay.com/photo/2022/10/19/01/18/cherry-blossom-7531346_960_720.jpg");
-  background-position: center;
-}
-
-.hide {
-  height: 700px;
-}
-
-.background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 50px;
+p {
+  font-size: 36px;
 }
 
 button {
@@ -54,6 +41,7 @@ button {
   border-radius: 5px;
   color: #00cfff;
   font-size: 36px;
+  text-transform: uppercase;
   cursor: pointer;
   -webkit-transition: color 0.3s, -webkit-box-shadow 0.3s;
   transition: color 0.3s, -webkit-box-shadow 0.3s;
@@ -67,9 +55,4 @@ button:hover {
   color: #00ffae;
   -webkit-box-shadow: 3px 3px 10px #00ffae;
           box-shadow: 3px 3px 10px #00ffae;
-}
-
-.fas {
-  -webkit-transition: rotate 0.6s;
-  transition: rotate 0.6s;
 }/*# sourceMappingURL=style.css.map */

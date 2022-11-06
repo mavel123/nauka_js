@@ -325,17 +325,43 @@
 // })
 // btn3.addEventListener('dblclick', test)
 
-const arrowBtn = document.querySelector('.arrow')
-const arrowIcon = document.querySelector('.fas')
-const img = document.querySelector('.item1')
+// const arrowBtn = document.querySelector('.arrow')
+// const arrowIcon = document.querySelector('.fas')
+// const img = document.querySelector('.item1')
 
-//nasluchiwanie na click na btn
-//dodajemy klase height
-//rotate na fas
+// //nasluchiwanie na click na btn
+// //dodajemy klase height
+// //rotate na fas
 
-arrowBtn.addEventListener('click', ()=>{
-    img.classList.toggle('hide')
-    arrowIcon.style.rotate = '180deg'
-    img.classList.contains('hide') ? arrowIcon.style.rotate = '180deg' : arrowIcon.style.rotate = '0deg' 
+// arrowBtn.addEventListener('click', ()=>{
+//     img.classList.toggle('hide')
+//     arrowIcon.style.rotate = '180deg'
+//     img.classList.contains('hide') ? arrowIcon.style.rotate = '180deg' : arrowIcon.style.rotate = '0deg' 
+// }
+// )
+
+const sizeUpBtn=document.querySelector('.sizeUp')
+const sizeDownBtn=document.querySelector('.sizeDown')
+const colorBtn=document.querySelector('.color')
+const colors=['red', 'green', 'blue', 'gold']
+const text  = document.querySelector('.text p')
+let fontSize = 36
+sizeUpBtn.addEventListener('click', () =>
+{
+    fontSize += 5
+    text.style.fontSize = fontSize + 'px'
+})
+sizeDownBtn.addEventListener('click', () =>{
+    fontSize -= 5
+    text.style.fontSize = fontSize + 'px'
+})
+let i =0 
+colorBtn.addEventListener('click', ()=>{
+     const r =Math.floor(Math.random() * 255)
+     const g =Math.floor(Math.random() * 255)
+     const b =Math.floor(Math.random() * 255)
+    
+    text.style.color = `rgb(${r}, ${g}, ${b})`
+    
 }
 )
