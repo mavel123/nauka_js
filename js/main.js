@@ -340,28 +340,35 @@
 // }
 // )
 
-const sizeUpBtn=document.querySelector('.sizeUp')
-const sizeDownBtn=document.querySelector('.sizeDown')
-const colorBtn=document.querySelector('.color')
-const colors=['red', 'green', 'blue', 'gold']
-const text  = document.querySelector('.text p')
-let fontSize = 36
-sizeUpBtn.addEventListener('click', () =>
-{
-    fontSize += 5
-    text.style.fontSize = fontSize + 'px'
-})
-sizeDownBtn.addEventListener('click', () =>{
-    fontSize -= 5
-    text.style.fontSize = fontSize + 'px'
-})
-let i =0 
-colorBtn.addEventListener('click', ()=>{
-     const r =Math.floor(Math.random() * 255)
-     const g =Math.floor(Math.random() * 255)
-     const b =Math.floor(Math.random() * 255)
-    
-    text.style.color = `rgb(${r}, ${g}, ${b})`
-    
+const pass = document.querySelector('#password');
+const p = document.querySelector('.passinfo');
+const letters = /[a-z]/i;
+const numbers = /[0-9]/;
+const special = /[!@#$%^&*()]/;
+const minValue = 10;
+
+const showMsg = () => {
+    if (pass.value.length >= minValue && pass.value.match(letters) && pass.value.match(special) && pass.value.match(numbers)){
+        p.textContent = 'Masz bardzo dobre haslo'
+        p.style.color = 'lime'
+    } else if( pass.value.length <10){
+        p.textContent = 'Twoje haslo jest zbyt krótkie.'
+        p.style.color = 'orange'
+    }else if ( (pass.value.length >= minValue && pass.value.match(letters) && pass.value.match(numbers))){
+        p.textContent = 'Masz dobre haslo'
+        p.style.color = 'green'
+    }else{
+        p.textContent = 'Twoje haslo jest słabe'
+    }
 }
-)
+const checkPass = () => {
+    if(pass.value.length != 0){
+        showMsg();
+    }else{
+        p.textContent = 'Nie podałeś hasła...'
+        p.style.color = '';
+    }
+}
+
+pass.addEventListener('keyup', checkPass)
+
