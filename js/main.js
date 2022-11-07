@@ -314,46 +314,58 @@
 //     img.classList.contains('hide') ? arrowIcon.style.rotate = '180deg' : arrowIcon.style.rotate = '0deg'
 // }
 // )
-const converter = document.querySelector('#converter')
-const result = document.querySelector('.result')
-const convBtn = document.querySelector('.conv')
-const resetBtn = document.querySelector('.reset')
-const changeBtn = document.querySelector('.change')
-const one = document.querySelector('.one')
-const two = document.querySelector('.two')
+// const converter = document.querySelector('#converter')
+// const result = document.querySelector('.result')
+// const convBtn = document.querySelector('.conv')
+// const resetBtn = document.querySelector('.reset')
+// const changeBtn = document.querySelector('.change')
+// const one = document.querySelector('.one')
+// const two = document.querySelector('.two')
 
-let fncResult
+// let fncResult
 
-const convert = () => {
+// const convert = () => {
 	
-	if (one.textContent == '°C') {
-		fncResult = converter.value * 1.8 + 32
-	} else {
-		fncResult = (converter.value - 32) / 1.8
-	}
-    showResult()
-	return fncResult
+// 	if (one.textContent == '°C') {
+// 		fncResult = converter.value * 1.8 + 32
+// 	} else {
+// 		fncResult = (converter.value - 32) / 1.8
+// 	}
+//     showResult()
+// 	return fncResult
+// }
+
+// const showResult = () => {
+// 	if (one.textContent === '°C') result.textContent = `${converter.value} °C to ${fncResult} °F`
+// 	else result.textContent = `${converter.value} °F to ${fncResult} °C`
+// }
+
+// const changeVal = () => {
+// 	if (one.textContent === '°C') {
+// 		one.textContent = '°F'
+// 		two.textContent = '°C'
+// 	} else {
+// 		two.textContent = '°F'
+// 		one.textContent = '°C'
+// 	}
+// }
+// const reset = () => {
+//     result.textContent=''
+//     converter.value=''
+// }
+// changeBtn.addEventListener('click', changeVal)
+// convBtn.addEventListener('click', convert)
+// resetBtn.addEventListener('click', reset)
+const icons = document.querySelector ('.burger')
+const burgerBtn = document.querySelector('.fa-bars')
+const exitBtn = document.querySelector('.fa-times')
+const navList = document.querySelector('nav ul')
+const showNav = () => {
+    navList.classList.toggle('active');
+    icons.classList.toggle('active');
+    exitBtn.classList.toggle('hide')
+    burgerBtn.classList.toggle('hide')
 }
 
-const showResult = () => {
-	if (one.textContent === '°C') result.textContent = `${converter.value} °C to ${fncResult} °F`
-	else result.textContent = `${converter.value} °F to ${fncResult} °C`
-}
-
-const changeVal = () => {
-	if (one.textContent === '°C') {
-		one.textContent = '°F'
-		two.textContent = '°C'
-	} else {
-		two.textContent = '°F'
-		one.textContent = '°C'
-	}
-}
-const reset = () => {
-    result.textContent=''
-    converter.value=''
-}
-changeBtn.addEventListener('click', changeVal)
-convBtn.addEventListener('click', convert)
-resetBtn.addEventListener('click', reset)
+icons.addEventListener('click', showNav)
 
