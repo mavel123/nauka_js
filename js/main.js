@@ -182,13 +182,11 @@
 // headingTwo.textContent= 'jestem naglowek 2'
 // div.appendChild(headingTwo)
 
-
 // ///apend()
 
 // div.append(document.createElement('p'), headingTwo)
 
 //innerHTML, outerHTML, textContent, innerText 80 odc. 1czjs
-
 
 // const input = document.querySelector('input')
 // const underInput = document.querySelector('.under-input')
@@ -206,7 +204,6 @@
 
 // body.append(ulList)
 
-
 // for(let j= 1; j<=10; j++ )
 // {
 // const liItem= document.createElement('li')
@@ -215,7 +212,6 @@
 // }
 
 //  ulList.lastChild.classList.add('last-li')
-
 
 // const square = document.querySelector('.square')
 // const paragraph = document.querySelectorAll('p')
@@ -238,7 +234,6 @@
 //     paragraph.forEach(item => item.classList.toggle('show'))
 // }
 
-
 // burgerBtn.addEventListener('dblclick', textHello)
 // square.addEventListener('mouseover', redColor)
 // square.addEventListener('mouseout', blueColor)
@@ -249,7 +244,6 @@
 // const colors = ['red', 'green', 'blue']
 // alert('czesc')
 // confirm('ja tuu tetraz?')
-
 
 // const image = document.querySelector('img')
 
@@ -271,26 +265,18 @@
 //     item.textContent = index+1
 // });
 
-
-
 // const thirdLi =document.querySelector('[data-id="3"]')
 // console.log(thirdLi)
 // console.log(thirdLi.closest('.wrapper'))
-
-
-
-
-
 
 // const newDiv = document.createElement('div')
 // newDiv.classList.add('circle', 'gold' )
 // lime.appendChild(newDiv)
 
-
 // const circles = document.querySelectorAll('.circle')
 
 // circles.forEach(circle => circle.addEventListener('click', () => {
-//     console.log(circle)  
+//     console.log(circle)
 //   } ))
 
 // console.log('czesc');
@@ -309,17 +295,6 @@
 
 // console.table(persons)
 
-
-
-
-
-
-
-
-
-
-
-
 // btn2.addEventListener('mouseover', () => {
 //     console.log('najechano na mnie')
 // })
@@ -336,39 +311,49 @@
 // arrowBtn.addEventListener('click', ()=>{
 //     img.classList.toggle('hide')
 //     arrowIcon.style.rotate = '180deg'
-//     img.classList.contains('hide') ? arrowIcon.style.rotate = '180deg' : arrowIcon.style.rotate = '0deg' 
+//     img.classList.contains('hide') ? arrowIcon.style.rotate = '180deg' : arrowIcon.style.rotate = '0deg'
 // }
 // )
+const converter = document.querySelector('#converter')
+const result = document.querySelector('.result')
+const convBtn = document.querySelector('.conv')
+const resetBtn = document.querySelector('.reset')
+const changeBtn = document.querySelector('.change')
+const one = document.querySelector('.one')
+const two = document.querySelector('.two')
 
-const pass = document.querySelector('#password');
-const p = document.querySelector('.passinfo');
-const letters = /[a-z]/i;
-const numbers = /[0-9]/;
-const special = /[!@#$%^&*()]/;
-const minValue = 10;
+let fncResult
 
-const showMsg = () => {
-    if (pass.value.length >= minValue && pass.value.match(letters) && pass.value.match(special) && pass.value.match(numbers)){
-        p.textContent = 'Masz bardzo dobre haslo'
-        p.style.color = 'lime'
-    } else if( pass.value.length <10){
-        p.textContent = 'Twoje haslo jest zbyt krótkie.'
-        p.style.color = 'orange'
-    }else if ( (pass.value.length >= minValue && pass.value.match(letters) && pass.value.match(numbers))){
-        p.textContent = 'Masz dobre haslo'
-        p.style.color = 'green'
-    }else{
-        p.textContent = 'Twoje haslo jest słabe'
-    }
-}
-const checkPass = () => {
-    if(pass.value.length != 0){
-        showMsg();
-    }else{
-        p.textContent = 'Nie podałeś hasła...'
-        p.style.color = '';
-    }
+const convert = () => {
+	
+	if (one.textContent == '°C') {
+		fncResult = converter.value * 1.8 + 32
+	} else {
+		fncResult = (converter.value - 32) / 1.8
+	}
+    showResult()
+	return fncResult
 }
 
-pass.addEventListener('keyup', checkPass)
+const showResult = () => {
+	if (one.textContent === '°C') result.textContent = `${converter.value} °C to ${fncResult} °F`
+	else result.textContent = `${converter.value} °F to ${fncResult} °C`
+}
+
+const changeVal = () => {
+	if (one.textContent === '°C') {
+		one.textContent = '°F'
+		two.textContent = '°C'
+	} else {
+		two.textContent = '°F'
+		one.textContent = '°C'
+	}
+}
+const reset = () => {
+    result.textContent=''
+    converter.value=''
+}
+changeBtn.addEventListener('click', changeVal)
+convBtn.addEventListener('click', convert)
+resetBtn.addEventListener('click', reset)
 
