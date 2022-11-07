@@ -325,7 +325,7 @@
 // let fncResult
 
 // const convert = () => {
-	
+
 // 	if (one.textContent == '°C') {
 // 		fncResult = converter.value * 1.8 + 32
 // 	} else {
@@ -369,26 +369,150 @@
 
 // icons.addEventListener('click', showNav)
 
-const currentDay = document.querySelector('.current-day')
-const funFact = document.querySelector('.fun-fact')
+// const currentDay = document.querySelector('.current-day')
+// const funFact = document.querySelector('.fun-fact')
 
-const facts = [
-	'Krokodyl nie potrafi wystawić języka.',
-	'Każdy człowiek spędził około pół godziny jako pojedyncza komórka.',
-	'Dźwięk przemieszcza się 15 razy szybciej przez stal niż przez powietrze.',
-	'Leniwce potrzebują dwóch tygodni na strawienie jedzenia.',
-	'Goryle śpią nawet czternaście godzin dziennie.',
-	'Język kameleona jest dwukrotnie dłuższy od jego ciała.',
-	'Chińczycy w ciągu roku zużywają około 80 miliardów pałeczek.',
-	'Żeby wejść na Wieżę Eiffla trzeba pokonać aż 1710 stopni.'
-]
+// const facts = [
+// 	'Krokodyl nie potrafi wystawić języka.',
+// 	'Każdy człowiek spędził około pół godziny jako pojedyncza komórka.',
+// 	'Dźwięk przemieszcza się 15 razy szybciej przez stal niż przez powietrze.',
+// 	'Leniwce potrzebują dwóch tygodni na strawienie jedzenia.',
+// 	'Goryle śpią nawet czternaście godzin dziennie.',
+// 	'Język kameleona jest dwukrotnie dłuższy od jego ciała.',
+// 	'Chińczycy w ciągu roku zużywają około 80 miliardów pałeczek.',
+// 	'Żeby wejść na Wieżę Eiffla trzeba pokonać aż 1710 stopni.'
+// ]
 
-const day = new Date()
+// const day = new Date()
 
-currentDay.textContent = (day.toLocaleDateString('pl', { weekday: 'long' }))
+// currentDay.textContent = (day.toLocaleDateString('pl', { weekday: 'long' }))
 
-const showRandomFact = () => {
-    const number = Math.floor(Math.random() * facts.length)
-    funFact.textContent = facts[number]
+// const showRandomFact = () => {
+//     const number = Math.floor(Math.random() * facts.length)
+//     funFact.textContent = facts[number]
+// }
+// showRandomFact()
+
+let toDoInput
+let errorInfo
+let addBtn
+let ulList
+let newToDo
+
+let popup
+let popupInfo
+let todoToEdit
+let popupInput
+let popupAddBtn
+let popupCloseBtn
+
+const main = () => {
+	prepareDOMElements()
+	prepareDOMEvents()
 }
-showRandomFact()
+
+const prepareDOMElements = () => {
+	toDoInput = document.querySelector('.todo-input')
+	errorInfo = document.querySelector('.error-info')
+	addBtn = document.querySelector('.btn-add')
+	ulList = document.querySelector('.todolist ul')
+
+	//ELEMENTY POPUPA
+	popup = document.querySelector('.popup')
+	popupInfo = document.querySelector('.popup-info')
+	popupInput = document.querySelector('.popup-input')
+	popupAddBtn = document.querySelector('.popup-body .accept')
+	popupCloseBtn = document.querySelector('.popup-body .cancel')
+}
+const prepareDOMEvents = () => {
+	addBtn.addEventListener('click', addNewTask)
+	ulList.addEventListener('click', checkClick)
+	popupCloseBtn.addEventListener('click', closePopup)
+	popupAddBtn.addEventListener('click', changeTodoText)
+    toDoInput.addEventListener('keyup', checkKeyEnter)
+}
+
+const addNewTask = () => {
+	//DODAWANIE NOWEGO ELEMENTU DO TODOLISTY
+	if (toDoInput.value != '') {
+		newToDo = document.createElement('li')
+		newToDo.textContent = toDoInput.value
+		ulList.append(newToDo)
+		errorInfo.textContent = ''
+		toDoInput.value = ''
+		createToolsArea()
+	} else {
+		errorInfo.textContent = 'Wpisz treść zadania.'
+	}
+}
+
+const createToolsArea = () => {
+	//DODAWANIE ICON DO TODOLISTY
+	const tools = document.createElement('div')
+	tools.classList.add('tools')
+
+	const confirmBtn = document.createElement('button')
+	confirmBtn.innerHTML = '<i class="fas fa-check"></i>'
+	confirmBtn.classList.add('complete')
+
+	const editBtn = document.createElement('button')
+	editBtn.textContent = 'EDIT'
+	editBtn.classList.add('edit')
+
+	const deleteBtn = document.createElement('button')
+	deleteBtn.innerHTML = '<i class="fas fa-times"></i>'
+	deleteBtn.classList.add('delete')
+	tools.append(confirmBtn, editBtn, deleteBtn)
+
+	newToDo.appendChild(tools)
+}
+const checkClick = e => {
+	//SPRAWDZANIE PRZYCISKU KTORY ZOSTAL KNIKNIETY
+	if (e.target.matches('.complete')) {
+		e.target.closest('li').classList.toggle('completed')
+		e.target.classList.toggle('completed')
+	} else if (e.target.matches('.edit')) {
+		editToDo(e)
+	} else if (e.target.matches('.delete')) {
+		deleteToDo(e)
+	}
+}
+
+const editToDo = event => {
+	//POKANIE SIE POPUPA DO EDYCJI TASKU
+	popup.style.display = 'flex'
+	todoToEdit = event.target.closest('li')
+	popupInput.value = todoToEdit.firstChild.textContent
+}
+
+const closePopup = () => {
+	//ZAMKNIECIE SIE POPUPA DO EDYCJI TASKU
+	popup.style.display = 'none'
+	popupInfo.textContent = ''
+}
+
+const changeTodoText = () => {
+
+	//EDYCJA TEXTU TASKA ('li')
+	if (popupInput.value !== '') {
+		todoToEdit.firstChild.textContent = popupInput.value
+		closePopup()
+	} else {
+		popupInfo.textContent = 'Musisz podać jakąś treść'
+	}
+}
+
+const deleteToDo = e => {
+	e.target.closest('li').remove()
+	const allTodos = ulList.querySelectorAll('li')
+	if (allTodos.length === 0) {
+		errorInfo.textContent = 'Brak zadań na liście.'
+	}
+}
+const checkKeyEnter = e =>{
+    if(e.key === 'Enter'){
+        addNewTask();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', main)
