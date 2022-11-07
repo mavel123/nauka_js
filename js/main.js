@@ -356,16 +356,39 @@
 // changeBtn.addEventListener('click', changeVal)
 // convBtn.addEventListener('click', convert)
 // resetBtn.addEventListener('click', reset)
-const icons = document.querySelector ('.burger')
-const burgerBtn = document.querySelector('.fa-bars')
-const exitBtn = document.querySelector('.fa-times')
-const navList = document.querySelector('nav ul')
-const showNav = () => {
-    navList.classList.toggle('active');
-    icons.classList.toggle('active');
-    exitBtn.classList.toggle('hide')
-    burgerBtn.classList.toggle('hide')
+// const icons = document.querySelector ('.burger')
+// const burgerBtn = document.querySelector('.fa-bars')
+// const exitBtn = document.querySelector('.fa-times')
+// const navList = document.querySelector('nav ul')
+// const showNav = () => {
+//     navList.classList.toggle('active');
+//     icons.classList.toggle('active');
+//     exitBtn.classList.toggle('hide')
+//     burgerBtn.classList.toggle('hide')
+// }
+
+// icons.addEventListener('click', showNav)
+
+const currentDay = document.querySelector('.current-day')
+const funFact = document.querySelector('.fun-fact')
+
+const facts = [
+	'Krokodyl nie potrafi wystawić języka.',
+	'Każdy człowiek spędził około pół godziny jako pojedyncza komórka.',
+	'Dźwięk przemieszcza się 15 razy szybciej przez stal niż przez powietrze.',
+	'Leniwce potrzebują dwóch tygodni na strawienie jedzenia.',
+	'Goryle śpią nawet czternaście godzin dziennie.',
+	'Język kameleona jest dwukrotnie dłuższy od jego ciała.',
+	'Chińczycy w ciągu roku zużywają około 80 miliardów pałeczek.',
+	'Żeby wejść na Wieżę Eiffla trzeba pokonać aż 1710 stopni.'
+]
+
+const day = new Date()
+
+currentDay.textContent = (day.toLocaleDateString('pl', { weekday: 'long' }))
+
+const showRandomFact = () => {
+    const number = Math.floor(Math.random() * facts.length)
+    funFact.textContent = facts[number]
 }
-
-icons.addEventListener('click', showNav)
-
+showRandomFact()
