@@ -393,126 +393,227 @@
 // }
 // showRandomFact()
 
-let toDoInput
-let errorInfo
-let addBtn
-let ulList
-let newToDo
+// let toDoInput
+// let errorInfo
+// let addBtn
+// let ulList
+// let newToDo
 
-let popup
-let popupInfo
-let todoToEdit
-let popupInput
-let popupAddBtn
-let popupCloseBtn
+// let popup
+// let popupInfo
+// let todoToEdit
+// let popupInput
+// let popupAddBtn
+// let popupCloseBtn
 
-const main = () => {
-	prepareDOMElements()
-	prepareDOMEvents()
+// const main = () => {
+// 	prepareDOMElements()
+// 	prepareDOMEvents()
+// }
+
+// const prepareDOMElements = () => {
+// 	toDoInput = document.querySelector('.todo-input')
+// 	errorInfo = document.querySelector('.error-info')
+// 	addBtn = document.querySelector('.btn-add')
+// 	ulList = document.querySelector('.todolist ul')
+
+// 	//ELEMENTY POPUPA
+// 	popup = document.querySelector('.popup')
+// 	popupInfo = document.querySelector('.popup-info')
+// 	popupInput = document.querySelector('.popup-input')
+// 	popupAddBtn = document.querySelector('.popup-body .accept')
+// 	popupCloseBtn = document.querySelector('.popup-body .cancel')
+// }
+// const prepareDOMEvents = () => {
+// 	addBtn.addEventListener('click', addNewTask)
+// 	ulList.addEventListener('click', checkClick)
+// 	popupCloseBtn.addEventListener('click', closePopup)
+// 	popupAddBtn.addEventListener('click', changeTodoText)
+//     toDoInput.addEventListener('keyup', checkKeyEnter)
+// }
+
+// const addNewTask = () => {
+// 	//DODAWANIE NOWEGO ELEMENTU DO TODOLISTY
+// 	if (toDoInput.value != '') {
+// 		newToDo = document.createElement('li')
+// 		newToDo.textContent = toDoInput.value
+// 		ulList.append(newToDo)
+// 		errorInfo.textContent = ''
+// 		toDoInput.value = ''
+// 		createToolsArea()
+// 	} else {
+// 		errorInfo.textContent = 'Wpisz treść zadania.'
+// 	}
+// }
+
+// const createToolsArea = () => {
+// 	//DODAWANIE ICON DO TODOLISTY
+// 	const tools = document.createElement('div')
+// 	tools.classList.add('tools')
+
+// 	const confirmBtn = document.createElement('button')
+// 	confirmBtn.innerHTML = '<i class="fas fa-check"></i>'
+// 	confirmBtn.classList.add('complete')
+
+// 	const editBtn = document.createElement('button')
+// 	editBtn.textContent = 'EDIT'
+// 	editBtn.classList.add('edit')
+
+// 	const deleteBtn = document.createElement('button')
+// 	deleteBtn.innerHTML = '<i class="fas fa-times"></i>'
+// 	deleteBtn.classList.add('delete')
+// 	tools.append(confirmBtn, editBtn, deleteBtn)
+
+// 	newToDo.appendChild(tools)
+// }
+// const checkClick = e => {
+// 	//SPRAWDZANIE PRZYCISKU KTORY ZOSTAL KNIKNIETY
+// 	if (e.target.matches('.complete')) {
+// 		e.target.closest('li').classList.toggle('completed')
+// 		e.target.classList.toggle('completed')
+// 	} else if (e.target.matches('.edit')) {
+// 		editToDo(e)
+// 	} else if (e.target.matches('.delete')) {
+// 		deleteToDo(e)
+// 	}
+// }
+
+// const editToDo = event => {
+// 	//POKANIE SIE POPUPA DO EDYCJI TASKU
+// 	popup.style.display = 'flex'
+// 	todoToEdit = event.target.closest('li')
+// 	popupInput.value = todoToEdit.firstChild.textContent
+// }
+
+// const closePopup = () => {
+// 	//ZAMKNIECIE SIE POPUPA DO EDYCJI TASKU
+// 	popup.style.display = 'none'
+// 	popupInfo.textContent = ''
+// }
+
+// const changeTodoText = () => {
+
+// 	//EDYCJA TEXTU TASKA ('li')
+// 	if (popupInput.value !== '') {
+// 		todoToEdit.firstChild.textContent = popupInput.value
+// 		closePopup()
+// 	} else {
+// 		popupInfo.textContent = 'Musisz podać jakąś treść'
+// 	}
+// }
+
+// const deleteToDo = e => {
+// 	e.target.closest('li').remove()
+// 	const allTodos = ulList.querySelectorAll('li')
+// 	if (allTodos.length === 0) {
+// 		errorInfo.textContent = 'Brak zadań na liście.'
+// 	}
+// }
+// const checkKeyEnter = e =>{
+//     if(e.key === 'Enter'){
+//         addNewTask();
+//     }
+// }
+
+// document.addEventListener('DOMContentLoaded', main)
+
+// const user = {
+// 	name: 'Andrzej',
+// 	age: 45,
+// 	favColor: 'gold',
+// 	showName() {
+// 		console.log(user.name)
+// 	}
+// }
+// function User (name, age){ ///konstruktor
+// 	this.name = name
+// 	this.age = age
+
+// }
+
+// const newUser = new User('Klaudia', 23)
+// const newUser2 = new User('Andzrej', 33)
+// console.log(newUser, newUser2)
+
+// User.prototype.hello = function(){
+// 		console.log(`czesc ${this.name}`)
+// }
+
+// newUser.hello()
+// class Animal {
+// 	constructor(name) {
+// 		this.name = name
+// 	}
+// 	sound(){
+// 		console.log('Zwierzak robi "hau hau"')
+// 	}
+// }
+// class Dog extends Animal {
+// 	constructor(name, age){
+// 		super(name)
+// 		this.age = age
+// 	}
+// }
+// class Cat extends Animal {
+// 	constructor(name){
+// 		super(name)
+// 	}
+// 	sound(){
+// 		console.log('Zwierzak robi miau miau')
+// 	}
+// }
+
+// const dog = new Dog('Drops', 7)
+// const cat = new Cat('Franek')
+// dog.sound()
+// console.log(dog)
+// cat.sound()
+
+const person = {
+	name: 'Lily',
+	age: 23,
+	job: 'Slaughter',
+	car: {
+		brand: 'Audi',
+		model: 'Viper',
+	},
 }
-
-const prepareDOMElements = () => {
-	toDoInput = document.querySelector('.todo-input')
-	errorInfo = document.querySelector('.error-info')
-	addBtn = document.querySelector('.btn-add')
-	ulList = document.querySelector('.todolist ul')
-
-	//ELEMENTY POPUPA
-	popup = document.querySelector('.popup')
-	popupInfo = document.querySelector('.popup-info')
-	popupInput = document.querySelector('.popup-input')
-	popupAddBtn = document.querySelector('.popup-body .accept')
-	popupCloseBtn = document.querySelector('.popup-body .cancel')
+const showInfo = ({ name, age, job }) => {
+	console.log(`${name} pracuje jako ${job} i ma ${age} lata`)
 }
-const prepareDOMEvents = () => {
-	addBtn.addEventListener('click', addNewTask)
-	ulList.addEventListener('click', checkClick)
-	popupCloseBtn.addEventListener('click', closePopup)
-	popupAddBtn.addEventListener('click', changeTodoText)
-    toDoInput.addEventListener('keyup', checkKeyEnter)
+const showInfo2 = ({ car: { brand, model } }) => {
+	console.log(`Jezdzi ${brand}, modelem ${model}.`)
 }
+const showInfo3 = ({ car: { brand, model } }) => {
+	console.log(`Jezdzi ${brand}, modelem ${model}.`)
+}
+showInfo(person)
+showInfo2(person)
 
-const addNewTask = () => {
-	//DODAWANIE NOWEGO ELEMENTU DO TODOLISTY
-	if (toDoInput.value != '') {
-		newToDo = document.createElement('li')
-		newToDo.textContent = toDoInput.value
-		ulList.append(newToDo)
-		errorInfo.textContent = ''
-		toDoInput.value = ''
-		createToolsArea()
+const btn = document.querySelector('button')
+const image = document.querySelector('img')
+
+const URL = 'https://dog.ceo/api/breeds/image/random'
+
+btn.addEventListener('click', () => {
+	fetch(URL)
+		.then(res => res.json())
+		.then(data => image.setAttribute('src', data.message))
+		.catch(err => console.log(err))
+	console.log(fetch(URL))
+})
+
+const test = new Promise((resolve, reject) => {
+	if (true) {
+		resolve('jest ok')
 	} else {
-		errorInfo.textContent = 'Wpisz treść zadania.'
+		reject('jest nie ok')
 	}
+})
+test.then(info => console.log(info))
+.catch(err => console.log(err))
+
+async function test (){
+	await checkAge(22)
+	await doubleCheck()
 }
-
-const createToolsArea = () => {
-	//DODAWANIE ICON DO TODOLISTY
-	const tools = document.createElement('div')
-	tools.classList.add('tools')
-
-	const confirmBtn = document.createElement('button')
-	confirmBtn.innerHTML = '<i class="fas fa-check"></i>'
-	confirmBtn.classList.add('complete')
-
-	const editBtn = document.createElement('button')
-	editBtn.textContent = 'EDIT'
-	editBtn.classList.add('edit')
-
-	const deleteBtn = document.createElement('button')
-	deleteBtn.innerHTML = '<i class="fas fa-times"></i>'
-	deleteBtn.classList.add('delete')
-	tools.append(confirmBtn, editBtn, deleteBtn)
-
-	newToDo.appendChild(tools)
-}
-const checkClick = e => {
-	//SPRAWDZANIE PRZYCISKU KTORY ZOSTAL KNIKNIETY
-	if (e.target.matches('.complete')) {
-		e.target.closest('li').classList.toggle('completed')
-		e.target.classList.toggle('completed')
-	} else if (e.target.matches('.edit')) {
-		editToDo(e)
-	} else if (e.target.matches('.delete')) {
-		deleteToDo(e)
-	}
-}
-
-const editToDo = event => {
-	//POKANIE SIE POPUPA DO EDYCJI TASKU
-	popup.style.display = 'flex'
-	todoToEdit = event.target.closest('li')
-	popupInput.value = todoToEdit.firstChild.textContent
-}
-
-const closePopup = () => {
-	//ZAMKNIECIE SIE POPUPA DO EDYCJI TASKU
-	popup.style.display = 'none'
-	popupInfo.textContent = ''
-}
-
-const changeTodoText = () => {
-
-	//EDYCJA TEXTU TASKA ('li')
-	if (popupInput.value !== '') {
-		todoToEdit.firstChild.textContent = popupInput.value
-		closePopup()
-	} else {
-		popupInfo.textContent = 'Musisz podać jakąś treść'
-	}
-}
-
-const deleteToDo = e => {
-	e.target.closest('li').remove()
-	const allTodos = ulList.querySelectorAll('li')
-	if (allTodos.length === 0) {
-		errorInfo.textContent = 'Brak zadań na liście.'
-	}
-}
-const checkKeyEnter = e =>{
-    if(e.key === 'Enter'){
-        addNewTask();
-    }
-}
-
-document.addEventListener('DOMContentLoaded', main)
