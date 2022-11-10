@@ -8,111 +8,112 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    color: rgb(255, 255, 255);
-    background-image: linear-gradient(315deg, #c2118d 0%, #ff503c 74%);
+    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+}
+
+.wrapper {
+    width: 440px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #000;
+}
+
+form {
+    padding: 40px;
     font-size: 20px;
 }
 
 h1 {
-    text-transform: uppercase;
     text-align: center;
-    padding: 10px;
+    margin-bottom: 30px;
 }
 
-input {
+.form-box {
+    margin-bottom: 15px;
+}
+
+.form-box label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 10px;
     font-size: 16px;
-    padding: 5px 10px;
-    margin-top: 10px;
-    background: none;
-    border: none;
-    color: #fff;
-    border-bottom: 2px solid #ddd;
-}
-
-input::placeholder {
-    color: #ddd;
-    font-family: 'Montserrat', sans-serif;
-}
-
-button {
-    padding: 10px;
-    margin-left: 20px;
-    color: #fff;
-    font-weight: bold;
-    background: none;
+    border: 1px solid rgb(197, 197, 197);
     border-radius: 5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color .3s, color .3s;
 }
 
-button:hover {
-    color: #333;
-    background-color: #ddd;
+.form-box.error input {
+    border: 1px solid rgb(0, 137, 250);
+    background-color: rgba(0, 137, 250, .1);
 }
 
-.wrapper {
-    width: 800px;
-    padding: 20px 40px;
-    background-color: rgba(0, 0, 0, .8);
-    border: 2px solid white;
-    border-radius: 25px;
-}
-
-.top {
-    height: 260px;
-}
-
-.bottom {
-    height: 140px;
-}
-
-.main-info {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 200px;
-}
-
-.city-name {
-    font-size: 40px;
-}
-
-.headings,
-.weather-info {
-    display: flex;
-    align-items: center;
-}
-
-.headings p,
-.weather-info p {
-    width: 33.3%;
-    text-align: center;
-}
-
-.headings {
-    height: 35%;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
-
-.weather-info {
-    height: 65%;
-    font-size: 26px;
-}
-
-.photo {
-    width: 140px;
-    height: 140px;
-	object-fit: contain;
-}
-
-.warning {
-    margin-top: 10px;
+.form-box .error-text {
+    visibility: hidden;
+    margin: 5px 0 0 10px;
     font-size: 14px;
-    color: tomato;
+    color: rgb(0, 137, 250);
+}
+
+.form-box.error .error-text {
+    visibility: visible;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.send,
+.clear,
+.close {
+    display: block;
+    padding: 10px 0;
+    margin-left: 10px;
+    width: 100px;
+    font-size: 18px;
+    background-color: rgb(0, 140, 255);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.send:hover,
+.clear:hover,
+.close:hover {
+    background-color: rgb(0, 107, 194);
+}
+
+.popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    border: 2px solid black;
+    transition: top .5s;
+}
+
+.popup p {
+    font-size: 28px;
+}
+
+.popup button {
+    margin-top: 20px;
+}
+
+.show-popup {
+    top: 150px;
 }
