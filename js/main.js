@@ -1,47 +1,84 @@
-const input = document.querySelector('input')
-const ball = document.querySelector('img')
-const errorText= document.querySelector('.error')
-const answerText= document.querySelector('.answer')
+const addBtn = document.querySelector('.add')
+const saveBtn = document.querySelector('.save')
+const cancelBtn = document.querySelector('.cancel')
+const deleteBtns = document.getElementsByClassName('.delete')
+const deleteAllBtn = document.querySelector('.delete-all')
+const noteArea = document.querySelector('.note-area')
 
-const answersArr = ['Może', 'tak', 'nie', 'Nie chcesz znac odpowiedzi na to pytanie', 'Ciezko powiedziec...']
+const notePanel = document.querySelector('.note-panel')
+const category = document.querySelector('#category')
+const textArea = document.querySelector('#text')	
+const error = document.querySelector('.error')
+let selectedValue;
+let cardID = 1;
 
-const checkInput = () => {
-	if(input.value != '' && input.value.slice(-1) === '?'){
-		generateAnswer();
-	}else if(input.value.slice(-1) !== '?' && input.value != ''){
-		showErrorQuestion()
+const openPanel = () => {
+	notePanel.style.display = 'flex'
+}
+const hidePanel = () => {
+	notePanel.style.display = 'none'
+	error.style.visibility = 'hidden'
+	textArea.value = ''
+	category.selectedIndex= 0
+}
+const addNote = () => {
+	if(textArea.value != '' && category.options[category.selectedIndex].value != 0){
+		error.style.visibility = 'hidden'
+		
+		createNote()
 	}else{
-		errorText.classList.add('show')
-		errorText.textContent = 'Zadaj jakies pytanie'
+		error.style.visibility = 'visible'
 	}
 }
-const showErrorQuestion = () => {
-	errorText.textContent ='Zadaj pytanie, konczące sie znakiem zapytania'
-	errorText.classList.add('show')
-	answerText.textContent = ''
+const createNote = () => {
+	const newNote = document.createElement('div')
+	newNote.classList.add('note')
+	newNote.setAttribute('id', cardID)
+	
+	newNote.innerHTML = `
+	<div class="note-header">
+	<h3 class="note-title">${selectedValue} #${cardID}</h3>
+	<button class="delete-note" onclick='deleteNote(${cardID})'>
+		<i class="fas fa-times icon"></i>
+	</button>
+	</div>
+	<div class="note-body">
+	${textArea.value}
+	</div>
+`	
+	cardID++
+	noteArea.append(newNote)
+	category.selectedIndex = 0 
+	textArea.value = ''
+	notePanel.style.display='none'
+	checkColor(newNote)
 }
-const shakeBall = () => {
-	ball.classList.add('play-animation')
-	setTimeout(()=>{ball.classList.remove('play-animation')}, 1000)
+const selectValue = () => {
+	selectedValue = category.options[category.selectedIndex].text
 }
-
-
-
-const generateAnswer = () => {
-	
-	errorText.textContent=''
-	shakeBall();
-	
-	setTimeout(()=>{
-	const answer = answersArr[Math.floor(Math.random()*5)]
-	answerText.innerHTML = `<span>Odpowiedź:</span> ${answer}`
-	answerText.classList.add('show')
-	
-	},1000)
-	
+const checkColor = note => {
+	switch(selectedValue){
+		case 'Zakupy':
+			note.style.backgroundColor = 'rgb(72,255,0)'
+			break;
+		case 'Praca':
+			note.style.backgroundColor = 'rgb(255,243,0)'
+			break;
+		case 'Inne':
+			note.style.backgroundColor = 'rgb(0,170,255)'
+			break;
+	}
 }
-
-ball.addEventListener('click', ()=>{
-	checkInput();
-} )
-
+const deleteNote = (id) => {
+	const noteToDelete = document.getElementById(id)
+	noteArea.removeChild(noteToDelete)
+	cardID--
+}
+const deleteAllNotes = () => {
+	noteArea.textContent = ''
+	cardID = 1
+}
+addBtn.addEventListener('click', openPanel)
+cancelBtn.addEventListener('click', hidePanel)
+saveBtn.addEventListener('click', addNote)
+deleteAllBtn.addEventListener('click', deleteAllNotes)
